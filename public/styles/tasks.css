@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Archivo", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #ffffff;
+}
+
+body {
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+}
+
+.main-content {
+  height: 100vh;
+  flex: 5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.5s;
+  margin-top: 10vh;
+}
+
+.nav-content {
+  background-color: hsl(0, 0%, 5%);
+  height: 100vh;
+  width: calc(100vw * 1 / 6);
+  position: relative;
+  transition: width 0.5s ease;
+}
+
+.nav-content-toggle {
+  width: 0;
+  transition: 0.6s ease;
+}
+
+.nav-content-toggle.closed ~ .main-content {
+  width: 100%;
+}
+
+.menu {
+  cursor: pointer;
+  position: absolute;
+  left: -60px;
+  top: 40px;
+  font-size: 28px;
+  color: #ffffff;
+}
+
+nav ul {
+  margin-top: 40px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+ul li {
+  width: 80%;
+  border-radius: 10px;
+}
+
+ul li a {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+li:hover {
+  background-color: #ffffff59;
+
+  transition: 0.2s;
+}
+a svg {
+  width: 20px;
+}
+
+li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.tasks-container {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.tasks-container h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.tasks-container p {
+  font-size: 1rem;
+  color: #ffffff83;
+}
+
+.input-section {
+  display: flex;
+  gap: 8px;
+}
+
+.input-section input {
+  outline: none;
+  color: #ffffff;
+  flex: 20;
+  padding: 8px 10px;
+  font-size: 1rem;
+  background: hsl(0, 0%, 10%);
+  border: none;
+  border-radius: 5px;
+}
+
+.input-section button {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 20px;
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+}
+
+.tasks-box {
+  background-color: hsl(0, 0%, 5%);
+  height: 40vh;
+  border-radius: 8px;
+  padding: 30px;
+}

@@ -1,4 +1,5 @@
 const modules = document.querySelectorAll(".module");
+
 const playBtn = document.querySelector(".play");
 
 const deepMinutes = document.getElementById("deepMinutes");
@@ -120,3 +121,5 @@ function toggleMenu() {
 }
 
 updateDisplay();
+
+// Tasks
