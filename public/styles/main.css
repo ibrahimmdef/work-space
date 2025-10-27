@@ -12,6 +12,7 @@
 
 body {
   background-color: #000000;
+  overflow-x: hidden;
 }
 
 .container {
@@ -21,11 +22,12 @@ body {
 .main-content {
   height: 100vh;
   flex: 5;
-  width: calc(100vw * 5 / 6);
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.5s;
 }
 
 .content {
@@ -70,9 +72,11 @@ body {
   font-weight: 800;
 }
 
-.display b {
-  font-size: 10rem;
-  margin-bottom: 20px;
+.display .colon {
+  position: relative;
+  top: -9px;
+  font-weight: 400;
+  vertical-align: super;
 }
 
 .play {
@@ -102,14 +106,32 @@ body {
   display: none;
 }
 
+.refresh {
+  cursor: pointer;
+  display: none;
+  margin-top: -25px;
+  width: 25px;
+}
+
 .nav-content {
   background-color: #1a1616;
   height: 100vh;
-  flex: 1;
+  width: calc(100vw * 1 / 6);
   position: relative;
+  transition: width 0.5s ease;
+}
+
+.nav-content-toggle {
+  width: 0;
+  transition: 0.6s ease;
+}
+
+.nav-content-toggle.closed ~ .main-content {
+  width: 100%; /* tam genişlik alır */
 }
 
 .menu {
+  cursor: pointer;
   position: absolute;
   left: -60px;
   top: 40px;
