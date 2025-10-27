@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Archivo", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #ffffff;
+}
+
+body {
+  background-color: #000000;
+}
+
+.container {
+  display: flex;
+}
+
+.main-content {
+  height: 100vh;
+  flex: 5;
+  width: calc(100vw * 5 / 6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 50px;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+}
+
+.module {
+  width: 100%;
+  text-align: center;
+  flex: 1;
+  padding: 10px 22px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+}
+
+.active-module {
+  background-color: #ffffff;
+  color: #1a1616;
+  transition: 0.3s;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display span {
+  font-size: 10rem;
+  font-weight: 800;
+}
+
+.display b {
+  font-size: 10rem;
+  margin-bottom: 20px;
+}
+
+.play {
+  background-color: #ffffff;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  color: #000000;
+}
+
+.play svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pause-icon {
+  display: none;
+}
+
+.active-button .pause-icon {
+  display: inline-block;
+}
+
+.active-button .play-icon {
+  display: none;
+}
+
+.nav-content {
+  background-color: #1a1616;
+  height: 100vh;
+  flex: 1;
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  left: -60px;
+  top: 40px;
+  font-size: 28px;
+  color: #ffffff;
+}
+
+nav ul {
+  margin-top: 40px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+ul li {
+  width: 80%;
+  border-radius: 10px;
+}
+
+ul li a {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+li:hover {
+  background-color: #ffffff46;
+
+  transition: 0.2s;
+}
+a svg {
+  width: 20px;
+}
+
+li a {
+  text-decoration: none;
+  color: #fff;
+}
