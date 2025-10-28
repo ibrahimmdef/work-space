@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Work-Space</title>
-    <link rel="stylesheet" href="../styles/tasks.css" />
+    <link rel="stylesheet" href="../styles/settings.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -15,7 +15,69 @@
   </head>
   <body>
     <div class="container">
-      <div class="main-content"></div>
+      <div class="main-content">
+        <div class="settings-content">
+          <h2>Settings</h2>
+          <div class="settings-box">
+            <h3 class="underline">Timers</h3>
+            <div class="time-content">
+              <div class="time-box">
+                <h3>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                    <path
+                      fill="#ffffff"
+                      d="M464 256a208 208 0 1 1 -416 0 208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0 256 256 0 1 0 -512 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
+                    />
+                  </svg>
+                  Deep Work Session
+                </h3>
+                <div class="time-input">
+                  <input
+                    type="text"
+                    maxlength="3"
+                    id="deepSettings"
+                    value="50"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                    required
+                  />
+                  <span>minutes </span>
+                </div>
+              </div>
+              <div class="time-box">
+                <h3>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                    <path
+                      fill="#ffffff"
+                      d="M152-16c-13.3 0-24 10.7-24 24 0 38.9 23.4 59.4 39.1 73.1l1.1 1c16.3 14.3 23.8 21.8 23.8 37.9 0 13.3 10.7 24 24 24s24-10.7 24-24c0-38.9-23.4-59.4-39.1-73.1l-1.1-1C183.5 31.7 176 24.1 176 8 176-5.3 165.3-16 152-16zM96 192c-17.7 0-32 14.3-32 32l0 192c0 53 43 96 96 96l192 0c41.8 0 77.4-26.7 90.5-64l5.5 0c70.7 0 128-57.3 128-128S518.7 192 448 192L96 192zM448 384l0-128c35.3 0 64 28.7 64 64s-28.7 64-64 64zM288 8c0-13.3-10.7-24-24-24S240-5.3 240 8c0 38.9 23.4 59.4 39.1 73.1l1.1 1c16.3 14.3 23.8 21.8 23.8 37.9 0 13.3 10.7 24 24 24s24-10.7 24-24c0-38.9-23.4-59.4-39.1-73.1l-1.1-1C295.5 31.7 288 24.1 288 8z"
+                    />
+                  </svg>
+                  Break Time
+                </h3>
+                <div class="time-input">
+                  <input
+                    type="text"
+                    maxlength="3"
+                    id="breakSettings"
+                    value="10"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                    required
+                  />
+                  <span>minutes </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="settings-box">
+            <h3 class="underline">General</h3>
+            <div class="reset-box">
+              <h3>Reset your progress</h3>
+              <p>As soon as possible</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="nav-content">
         <div class="menu" onclick="toggleMenu()">☰</div>
         <nav>

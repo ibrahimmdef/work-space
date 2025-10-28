@@ -20,106 +20,129 @@ const menu = document.querySelector(".nav-content");
 
 const main = document.querySelector(".main-content");
 
-let timer;
-let deepTime = 20 * 60;
-let breakTime = 4 * 60;
-let time = deepTime;
-let working = false;
-let currentMode = "deep";
+const deepInput = document.querySelector("#deepSettings");
 
-function changeModule(e) {
-  modules.forEach((btn) => btn.classList.remove("active-module"));
-  e.target.classList.add("active-module");
+const breakInput = document.querySelector("#breakSettings");
 
-  clearInterval(timer);
+//Settings timer value
 
-  if (e.target.classList.contains("deep")) {
-    currentMode = "deep";
-    deepSection.style.display = "block";
-    breakSection.style.display = "none";
-    time = deepTime;
-  } else if (e.target.classList.contains("break")) {
-    currentMode = "break";
-    deepSection.style.display = "none";
-    breakSection.style.display = "block";
-    time = breakTime;
-  }
+if (playBtn && deepMinutes && breakMinutes) {
+  let timer;
+  let deepTime = (localStorage.getItem("deepTime") || 50) * 60;
+  let breakTime = (localStorage.getItem("breakTime") || 10) * 60;
+  let time = deepTime;
+  let working = false;
+  let currentMode = "deep";
 
-  if (working) {
-    togglePlayPause();
-    refresh.style.display = "none";
-  }
-  updateDisplay();
-}
+  function changeModule(e) {
+    modules.forEach((btn) => btn.classList.remove("active-module"));
+    e.target.classList.add("active-module");
 
-// Timer logic
+    clearInterval(timer);
 
-function updateDisplay() {
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-
-  if (currentMode === "deep") {
-    deepMinutes.textContent = String(minutes).padStart(2, "0");
-    deepSeconds.textContent = String(seconds).padStart(2, "0");
-  } else {
-    breakMinutes.textContent = String(minutes).padStart(2, "0");
-    breakSeconds.textContent = String(seconds).padStart(2, "0");
-  }
-}
-
-function startTimer() {
-  timer = setInterval(() => {
-    if (time <= 0) {
-      clearInterval(timer);
-      working = false;
-      playBtn.classList.remove("active-button");
-      return;
+    if (e.target.classList.contains("deep")) {
+      currentMode = "deep";
+      deepSection.style.display = "block";
+      breakSection.style.display = "none";
+      time = deepTime;
+    } else if (e.target.classList.contains("break")) {
+      currentMode = "break";
+      deepSection.style.display = "none";
+      breakSection.style.display = "block";
+      time = breakTime;
     }
-    time--;
-    updateDisplay();
-  }, 1000);
-}
 
-function pauseTimer() {
-  clearInterval(timer);
-}
-
-function togglePlayPause() {
-  working = !working;
-  playBtn.classList.toggle("active-button");
-
-  refresh.style.display = "block";
-
-  if (working) {
-    startTimer();
-  } else {
-    pauseTimer();
-  }
-}
-
-playBtn.addEventListener("click", togglePlayPause);
-
-function reset() {
-  if (currentMode === "deep") {
-    time = deepTime;
-    updateDisplay();
-  } else {
-    time = breakTime;
+    if (working) {
+      togglePlayPause();
+      refresh.style.display = "none";
+    }
     updateDisplay();
   }
 
-  if (working) {
-    togglePlayPause();
-    refresh.style.display = "none";
+  // Timer logic
+
+  function updateDisplay() {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    if (currentMode === "deep") {
+      deepMinutes.textContent = String(minutes).padStart(2, "0");
+      deepSeconds.textContent = String(seconds).padStart(2, "0");
+    } else {
+      breakMinutes.textContent = String(minutes).padStart(2, "0");
+      breakSeconds.textContent = String(seconds).padStart(2, "0");
+    }
   }
+
+  function startTimer() {
+    let audio = new Audio("../sounds/sound1.mp3");
+    audio.play();
+    timer = setInterval(() => {
+      if (time <= 0) {
+        clearInterval(timer);
+        working = false;
+        playBtn.classList.remove("active-button");
+        return;
+      }
+      time--;
+      updateDisplay();
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    clearInterval(timer);
+  }
+
+  function togglePlayPause() {
+    working = !working;
+    playBtn.classList.toggle("active-button");
+
+    refresh.style.display = "block";
+
+    if (working) {
+      startTimer();
+    } else {
+      pauseTimer();
+    }
+  }
+
+  playBtn.addEventListener("click", togglePlayPause);
+
+  function reset() {
+    if (currentMode === "deep") {
+      time = deepTime;
+      updateDisplay();
+    } else {
+      time = breakTime;
+      updateDisplay();
+    }
+
+    if (working) {
+      togglePlayPause();
+      refresh.style.display = "none";
+    }
+  }
+
+  updateDisplay();
 }
 
 // Toggle Menu
 
-function toggleMenu() {
-  menu.classList.toggle("nav-content-toggle");
+if (menu) {
+  function toggleMenu() {
+    menu.classList.toggle("nav-content-toggle");
+  }
 }
+// Settings Input
 
-updateDisplay();
+if (deepInput && breakInput) {
+  deepInput.addEventListener("change", () => {
+    const deepValue = Number(deepInput.value);
+    localStorage.setItem("deepTime", deepValue);
+  });
 
-// Tasks
+  breakInput.addEventListener("change", () => {
+    const breakValue = Number(breakInput.value);
+    localStorage.setItem("breakTime", breakValue);
+  });
+}
