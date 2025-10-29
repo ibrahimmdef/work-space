@@ -18,8 +18,6 @@ const refresh = document.querySelector(".refresh");
 
 const menu = document.querySelector(".nav-content");
 
-const main = document.querySelector(".main-content");
-
 const deepInput = document.querySelector("#deepSettings");
 
 const breakInput = document.querySelector("#breakSettings");
@@ -139,10 +137,22 @@ if (deepInput && breakInput) {
   deepInput.addEventListener("change", () => {
     const deepValue = Number(deepInput.value);
     localStorage.setItem("deepTime", deepValue);
+    console.log(deepInput.value);
   });
 
   breakInput.addEventListener("change", () => {
     const breakValue = Number(breakInput.value);
     localStorage.setItem("breakTime", breakValue);
+  });
+
+  window.addEventListener("load", () => {
+    const savedDeepTime = localStorage.getItem("deepTime");
+    const saveBreakTime = localStorage.getItem("breakTime");
+    if (savedDeepTime) {
+      deepInput.value = savedDeepTime;
+    }
+    if (saveBreakTime) {
+      breakInput.value = saveBreakTime;
+    }
   });
 }
