@@ -22,23 +22,14 @@
           <div class="input-section">
             <input
               type="text"
-              name="task"
-              id="input"
+              name="taskInput"
+              id="inputTask"
               placeholder="Add a new task"
             />
-            <button>+</button>
+            <button id="addTask">+</button>
           </div>
           <div class="tasks-box">
-            <div class="task">
-              <input type="checkbox" required />
-              <span>task1</span>
-            </div>
-            <div class="task"></div>
-            <div class="task"></div>
-            <div class="task"></div>
-            <div class="task"></div>
-            <div class="task"></div>
-            <div class="task"></div>
+            <ul class="task-list"></ul>
           </div>
           <p>1 tasks left</p>
         </div>
@@ -111,6 +102,6 @@
         </nav>
       </div>
     </div>
-    <script src="../logic/timer.js"></script>
+    <script src="../logic/task.js"></script>
   </body>
 </html>

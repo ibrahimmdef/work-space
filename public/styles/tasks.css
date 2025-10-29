@@ -27,7 +27,6 @@ body {
   flex-direction: column;
   align-items: center;
   transition: all 0.5s;
-  margin-top: 10vh;
 }
 
 .nav-content {
@@ -77,7 +76,7 @@ ul li a {
   gap: 15px;
 }
 
-li:hover {
+.nav-content li:hover {
   background-color: #ffffff59;
 
   transition: 0.2s;
@@ -97,12 +96,12 @@ li a {
   flex-direction: column;
   gap: 20px;
   padding: 20px;
+  margin-top: 5vh;
 }
 
 .tasks-container h2 {
   font-size: 2rem;
   font-weight: 500;
-  margin-bottom: 10px;
 }
 
 .tasks-container p {
@@ -119,7 +118,7 @@ li a {
   outline: none;
   color: #ffffff;
   flex: 22;
-  padding: 8px 10px;
+  padding: 4px 10px;
   font-size: 1rem;
   background: hsl(0, 0%, 22%);
   border: none;
@@ -128,16 +127,62 @@ li a {
 
 .input-section button {
   flex: 1;
-  padding: 8px 12px;
-  font-size: 20px;
   color: #000000;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  padding: 10px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.input-section button:hover {
+  transform: translateY(-2px);
 }
 
 .tasks-box {
-  background-color: hsl(0, 0%, 15%);
-  height: 40vh;
-  border-radius: 8px;
-  padding: 30px;
+  background-color: hsl(0, 0%, 13%);
+  border-radius: 12px;
+  padding: 20px;
+  height: 55vh;
+  overflow-y: auto;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.task-list li {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4px 12px 16px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  margin-bottom: 4px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.task-list li:hover {
+  background: hsl(0, 0%, 16%);
+}
+
+.task.completed {
+  text-decoration: line-through;
+  opacity: 0.4;
+  transition: 1s;
+}
+
+.task-list i {
+  width: 10px;
+  padding: 0 20px;
+}
+
+.task-btn span {
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.task-btn span:hover {
+  transform: scale(1.05);
 }
