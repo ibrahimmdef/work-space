@@ -79,9 +79,9 @@ ul li a {
 
 li:hover {
   background-color: #ffffff59;
-
   transition: 0.2s;
 }
+
 a svg {
   width: 20px;
 }
@@ -91,19 +91,59 @@ li a {
   color: #fff;
 }
 
-.settings-content {
+.profile-content {
   display: flex;
   flex-direction: column;
   gap: 40px;
   width: 800px;
 }
 
-.settings-content h2 {
+.profile-content h2 {
   padding: 10px;
   font-size: 1.9rem;
 }
 
-.settings-box {
+.not-logged-in {
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-logged-box {
+  padding: 60px 40px;
+  border-radius: 15px;
+  background: hsl(0, 0%, 15%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.not-logged-box svg {
+  width: 80px;
+  height: 80px;
+  opacity: 0.6;
+}
+
+.not-logged-box h3 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.not-logged-box p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 400px;
+}
+
+.profile-logged {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.profile-box {
   padding: 50px 30px;
   border: none;
   border-radius: 15px;
@@ -112,6 +152,7 @@ li a {
   gap: 20px;
   background: hsl(0, 0%, 15%);
 }
+
 .underline {
   font-size: 1.3rem;
   position: relative;
@@ -129,50 +170,61 @@ li a {
   background: rgba(116, 116, 116, 0.2);
 }
 
-.time-content {
-  display: flex;
-  gap: 10vw;
+.profile-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
   margin-top: 20px;
 }
 
-.time-box h3 {
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
-
-h3 svg {
-  width: 32px;
-  height: 20px;
-}
-
-.time-input input {
-  outline: none;
-  border: none;
-  border-radius: 10px;
-  background: hsl(0, 0%, 25%);
-  font-size: 1rem;
-  padding: 10px;
-  width: 30%;
-  margin-right: 10px;
-}
-
-.time-input span {
-  font-size: 0.9rem;
-}
-
-.reset-box {
+.info-item {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 20px;
-  font-size: 0.9rem;
+  gap: 8px;
+}
+
+.info-item label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.actions-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.actions-content p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-signout {
+  padding: 12px 30px;
+  background: hsl(0, 0%, 25%);
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-signout:hover {
+  background: hsl(0, 0%, 35%);
 }
 
 @media (max-width: 1024px) {
-  .settings-content {
+  .profile-content {
     width: 90%;
   }
 }
@@ -181,52 +233,79 @@ h3 svg {
   body {
     overflow-y: auto;
   }
+
   .nav-content {
     width: 80px;
   }
+
   .nav-content-toggle {
     width: 0;
   }
+
   .menu {
     left: -50px;
   }
+
   ul li a {
     justify-content: center;
     font-size: 0;
   }
+
   li svg {
     margin-bottom: 10px;
     width: 23px;
   }
+
   .main-content {
     margin-top: 10vh;
     padding: 0 20px;
     overflow-y: auto;
   }
-  .settings-content {
+
+  .profile-content {
     width: 100%;
   }
-  .settings-box {
+
+  .profile-box {
     padding: 35px 20px;
   }
 
-  .time-box h3 {
-    font-size: small;
+  .profile-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
-  h3 svg {
-    width: 25px;
-  }
-
-  .time-input {
-    display: flex;
+  .actions-content {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    align-items: flex-start;
   }
-  .time-input input {
-    font-size: 1rem;
-    padding: 10px;
-    width: 60%;
-    margin-left: -5px;
+
+  .btn-signout {
+    width: 100%;
+  }
+
+  .not-logged-box {
+    padding: 40px 20px;
+    width: 100%;
+  }
+
+  .not-logged-box svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .not-logged-box h3 {
+    font-size: 1.2rem;
+  }
+
+  .not-logged-box p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-info-grid {
+    grid-template-columns: 1fr;
   }
 }

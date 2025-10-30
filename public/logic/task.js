@@ -101,6 +101,11 @@ function saveTasks() {
     tasks.push({ text, completed });
   });
   localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  const count = document.querySelectorAll(".task-list li").length;
+  const taskCount = document.querySelector(".task-count");
+  console.log(count);
+  taskCount.textContent = `${count} tasks left`;
 }
 
 function loadTasks() {
