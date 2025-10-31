@@ -44,24 +44,14 @@ function addItem(text, completed = false) {
 
   btnDiv.className = "task-btn";
 
-  const edit = document.createElement("span");
-
-  edit.className = "edit";
-  edit.innerHTML = `<i class="fa fa-pen"></i>`;
-
   const remove = document.createElement("span");
 
   remove.className = "delete";
   remove.innerHTML = `<i class="fa fa-trash"></i>`;
 
-  btnDiv.appendChild(edit);
   btnDiv.appendChild(remove);
   li.appendChild(taskDiv);
   li.appendChild(btnDiv);
-
-  edit.addEventListener("click", () => {
-    alert("Edit clicked");
-  });
 
   remove.addEventListener("click", () => {
     li.remove();
