@@ -16,6 +16,8 @@ const breakSection = document.getElementById("breakSection");
 
 const refresh = document.querySelector(".refresh");
 
+const menuBtn = document.querySelector(".menu");
+
 const menu = document.querySelector(".nav-content");
 
 const deepInput = document.querySelector("#deepSettings");
@@ -31,6 +33,12 @@ if (playBtn && deepMinutes && breakMinutes) {
   let time = deepTime;
   let working = false;
   let currentMode = "deep";
+
+  modules.forEach((btn) => {
+    btn.addEventListener("click", changeModule);
+  });
+
+  document.querySelector(".refresh").addEventListener("click", reset);
 
   function changeModule(e) {
     modules.forEach((btn) => btn.classList.remove("active-module"));
@@ -80,6 +88,14 @@ if (playBtn && deepMinutes && breakMinutes) {
         clearInterval(timer);
         working = false;
         playBtn.classList.remove("active-button");
+
+        const minutes = currentMode === "deep" ? deepTime / 60 : breakTime / 60;
+
+        //Add minutes for stats
+
+        if (currentMode === "deep") addDeep(minutes);
+        else addBreak(minutes);
+
         return;
       }
       time--;
@@ -94,7 +110,6 @@ if (playBtn && deepMinutes && breakMinutes) {
   function togglePlayPause() {
     working = !working;
     playBtn.classList.toggle("active-button");
-
     refresh.style.display = "block";
 
     if (working) {
@@ -124,13 +139,12 @@ if (playBtn && deepMinutes && breakMinutes) {
   updateDisplay();
 }
 
-// Toggle Menu
-
-if (menu) {
-  function toggleMenu() {
-    menu.classList.toggle("nav-content-toggle");
-  }
+function toggleMenu() {
+  menu.classList.toggle("nav-content-toggle");
 }
+
+menuBtn.addEventListener("click", toggleMenu);
+
 // Settings Input
 
 if (deepInput && breakInput) {
@@ -156,3 +170,58 @@ if (deepInput && breakInput) {
     }
   });
 }
+
+//Export data
+
+function addDeep(minutes) {
+  updateDailyDeep(minutes);
+  updateAllDeep(minutes);
+}
+
+function updateDailyDeep(minutes) {
+  const today = new Date().toDateString();
+
+  if (localStorage.getItem("lastDayDeep") !== today) {
+    localStorage.setItem("dailyDeepTime", 0);
+    localStorage.setItem("lastDayDeep", today);
+  }
+
+  const daily = Number(localStorage.getItem("dailyDeepTime") || 0) + minutes;
+  localStorage.setItem("dailyDeepTime", daily);
+}
+
+function updateAllDeep(minutes) {
+  const all = Number(localStorage.getItem("allDeepTime") || 0) + minutes;
+  localStorage.setItem("allDeepTime", all);
+}
+
+function addBreak(minutes) {
+  updateDailyBreak(minutes);
+  updateAllBreak(minutes);
+}
+
+function updateDailyBreak(minutes) {
+  const today = new Date().toDateString();
+
+  if (localStorage.getItem("lastDayBreak") !== today) {
+    localStorage.setItem("dailyBreakTime", 0);
+    localStorage.setItem("lastDayBreak", today);
+  }
+
+  const daily = Number(localStorage.getItem("dailyBreakTime") || 0) + minutes;
+  localStorage.setItem("dailyBreakTime", daily);
+}
+
+function updateAllBreak(minutes) {
+  const all = Number(localStorage.getItem("allBreakTime") || 0) + minutes;
+  localStorage.setItem("allBreakTime", all);
+}
+
+export const getStats = () => {
+  return {
+    dailyDeepTime: Number(localStorage.getItem("dailyDeepTime") || 0),
+    allDeepTime: Number(localStorage.getItem("allDeepTime") || 0),
+    dailyBreakTime: Number(localStorage.getItem("dailyBreakTime") || 0),
+    allBreakTime: Number(localStorage.getItem("allBreakTime") || 0),
+  };
+};

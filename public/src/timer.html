@@ -18,15 +18,8 @@
       <div class="main-content">
         <div class="content">
           <div class="header">
-            <div
-              class="btn module deep active-module"
-              onclick="changeModule(event)"
-            >
-              Deep Work
-            </div>
-            <div class="btn module break" onclick="changeModule(event)">
-              Break Time
-            </div>
+            <div class="btn module deep active-module">Deep Work</div>
+            <div class="btn module break">Break Time</div>
           </div>
           <div class="display" id="deepSection">
             <span id="deepMinutes">30</span>
@@ -60,7 +53,7 @@
               />
             </svg>
           </div>
-          <div class="refresh" onclick="reset()">
+          <div class="refresh">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
                 fill="#ffffff"
@@ -71,7 +64,7 @@
         </div>
       </div>
       <div class="nav-content">
-        <div class="menu" onclick="toggleMenu()">☰</div>
+        <div class="menu">☰</div>
         <nav>
           <ul>
             <li>
@@ -138,6 +131,6 @@
         </nav>
       </div>
     </div>
-    <script src="../logic/timer.js"></script>
+    <script type="module" src="../logic/timer.js"></script>
   </body>
 </html>

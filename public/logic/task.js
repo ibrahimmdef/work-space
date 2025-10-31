@@ -6,24 +6,29 @@ const addTask = document.querySelector("#addTask");
 
 const taskList = document.querySelector(".task-list");
 
+const menuBtn = document.querySelector(".menu");
+
 if (menu) {
   function toggleMenu() {
     menu.classList.toggle("nav-content-toggle");
   }
+
+  menuBtn.addEventListener("click", toggleMenu);
 }
 
-addTask.addEventListener("click", () => {
-  const text = taskInput.value.trim();
-  if (text === "") return;
+if (addTask)
+  addTask.addEventListener("click", () => {
+    const text = taskInput.value.trim();
+    if (text === "") return;
 
-  console.log(taskInput.value);
-  addItem(text);
-  taskInput.value = "";
-});
-
-taskInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") addTask.click();
-});
+    console.log(taskInput.value);
+    addItem(text);
+    taskInput.value = "";
+  });
+if (taskInput)
+  taskInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") addTask.click();
+  });
 
 function addItem(text, completed = false) {
   const li = document.createElement("li");
@@ -102,6 +107,23 @@ function saveTasks() {
   });
   localStorage.setItem("tasks", JSON.stringify(tasks));
 
+  //Export task
+
+  const today = new Date().toDateString();
+
+  if (localStorage.getItem("lastDayTask") !== today) {
+    localStorage.setItem("dailyTasksCount", "0");
+    localStorage.setItem("lastDayTask", today);
+  }
+
+  const dailyCount =
+    Number(localStorage.getItem("dailyTasksCount") || 0) + tasks.length;
+  localStorage.setItem("dailyTasksCount", dailyCount);
+
+  const allCount =
+    Number(localStorage.getItem("allTasksCount") || 0) + tasks.length;
+  localStorage.setItem("allTasksCount", allCount);
+
   const count = document.querySelectorAll(".task-list li").length;
   const taskCount = document.querySelector(".task-count");
   console.log(count);
@@ -114,3 +136,10 @@ function loadTasks() {
 }
 
 window.addEventListener("load", loadTasks);
+
+export const getTaskStats = () => {
+  return {
+    dailyTasksCount: Number(localStorage.getItem("dailyTasksCount") || 0),
+    allTasksCount: Number(localStorage.getItem("allTasksCount") || 0),
+  };
+};
