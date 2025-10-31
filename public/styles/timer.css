@@ -31,13 +31,13 @@ body {
 }
 
 .content {
-  width: 550px;
+  width: 650px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  gap: 50px;
+  gap: 60px;
 }
 
 .header {
@@ -69,7 +69,7 @@ body {
 }
 
 .display span {
-  font-size: 11rem;
+  font-size: 12rem;
   font-weight: 800;
 }
 
@@ -220,7 +220,7 @@ li a {
   }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 400px) {
   .display span {
     font-size: 5rem;
     font-weight: 800;

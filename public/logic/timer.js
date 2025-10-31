@@ -116,6 +116,7 @@ if (playBtn && deepMinutes && breakMinutes) {
       startTimer();
     } else {
       pauseTimer();
+      refresh.style.display = "none";
     }
   }
 
